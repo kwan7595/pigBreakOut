@@ -2,5 +2,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+}
+.main__wolf{
+  display: block;
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  top: 10px;
+  width: 330px;
+
+}
+.main__title{
+  display: block;
+  z-index: 1;
+  width: 900px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+.main__house{
+  display: block;
+  width: 550px;
+  margin-top: 10px;
+}
+.main__btnBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
+}
+.btnBox{
+  display: block;
+  width: 200px;
+  margin: 20px 30px 0px 30px;
 }

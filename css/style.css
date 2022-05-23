@@ -34,4 +34,5 @@ body {
   background-image: url("../src/5_background.png");
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
