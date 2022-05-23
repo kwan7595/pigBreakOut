@@ -1,8 +1,14 @@
 //MAIN
 const playBtn = document.querySelector(".main__btnBox__playBtn");
+const storyBtn = document.querySelector(".main__btnBox__storyBtn");
 const setBtn = document.querySelector(".main__btnBox__setBtn");
 
 playBtn.addEventListener("click", () => {
+  document.querySelector("#main").style.display = "none";
+  document.querySelector("#difficulty").style.display = "flex";
+});
+
+storyBtn.addEventListener("click", () => {
   document.querySelector("#main").style.display = "none";
   document.querySelector("#story").style.display = "flex";
 });
@@ -22,6 +28,10 @@ document.querySelector(".story__play").addEventListener("click", () => {
 });
 
 //STORY
+document.querySelector(".story__main").addEventListener("click", () => {
+  document.querySelector("#story").style.display = "none";
+  document.querySelector("#main").style.display = "flex";
+});
 
 document
   .querySelector(".difficulty__container__normal")
