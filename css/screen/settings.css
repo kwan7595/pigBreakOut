@@ -1,0 +1,11 @@
+#settings {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  width: 300px;
+  height: 200px;
+  background-color: beige;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

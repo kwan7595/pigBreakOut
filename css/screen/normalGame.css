@@ -1,0 +1,10 @@
+#normalGame {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#normalGame canvas {
+  border: 3px solid aquamarine;
+}

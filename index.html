@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    <title>Break Out!</title>
+  </head>
+  <body>
+    <div id="pageWrapper">
+      <div id="main">
+        <h1>아기돼지 삼형제 Break Out!</h1>
+        <div class="main__btnBox">
+          <button class="main__btnBox__playBtn">Play!</button>
+          <button class="main__btnBox__setBtn">Settings</button>
+        </div>
+      </div>
+      <div id="story">
+        <div>이 편지는 영국에서 최초로 시작되어..</div>
+        <button class="story__play">Play!</button>
+      </div>
+      <div id="settings">
+        <div>BGM</div>
+        <div>늑대 선택</div>
+        <div>Paddle 선택</div>
+        <div>배경 선택</div>
+        <button class="settings__closeBtn">닫기</button>
+      </div>
+      <div id="difficulty">
+        <h1>난이도</h1>
+        <div class="difficulty__container">
+          <button class="difficulty__container__easy">Easy</button>
+          <button class="difficulty__container__normal">Normal</button>
+          <button class="difficulty__container__hard">Hard</button>
+        </div>
+      </div>
+      <div id="easyGame">
+        <h1 class="easyGame__title">Easy Mode!</h1>
+        <canvas id="easyCanvas" width="400px" height="500px"></canvas>
+        <div class="easyGame__stats">
+          <span class="easyGame__stats__life">Life : 0</span>
+          <span class="easyGame__stats__score">Score : 0</span>
+        </div>
+      </div>
+      <div id="normalGame">
+        <h1 class="normalGame__title">Normal Mode!</h1>
+        <canvas id="normalCanvas" width="400px" height="500px"></canvas>
+        <div class="normalGame__stats">
+          <span class="normalGame__stats__life">Life : 0</span>
+          <span class="normalGame__stats__score">Score : 0</span>
+        </div>
+      </div>
+      <div id="hardGame">
+        <h1 class="hardGame__title">Hard Mode!</h1>
+        <canvas id="hardCanvas" width="400px" height="500px"></canvas>
+        <div class="hardGame__stats">
+          <span class="hardGame__stats__life">Life : 0</span>
+          <span class="hardGame__stats__score">Score : 0</span>
+        </div>
+      </div>
+      <div id="win">
+        <h1>You win!</h1>
+      </div>
+      <div id="lose">
+        <h1>You lose..</h1>
+      </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/easyGame.js"></script>
+    <script src="js/normalGame.js"></script>
+    <script src="js/hardGame.js"></script>
+  </body>
+</html>
