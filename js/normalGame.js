@@ -1,5 +1,5 @@
 document
-  .querySelector(".difficulty__container__normal")
+  .querySelector(".difficulty__container__house2")
   .addEventListener("click", () => {
     document.querySelector("#difficulty").style.display = "none";
     document.querySelector("#normalGame").style.display = "flex";

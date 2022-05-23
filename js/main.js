@@ -33,18 +33,6 @@ document.querySelector(".story__main").addEventListener("click", () => {
   document.querySelector("#main").style.display = "flex";
 });
 
-document
-  .querySelector(".difficulty__container__normal")
-  .addEventListener("click", () => {
-    document.querySelector("#difficulty").style.display = "none";
-    document.querySelector("#normalGame").style.display = "flex";
-  });
-document
-  .querySelector(".difficulty__container__hard")
-  .addEventListener("click", () => {
-    document.querySelector("#difficulty").style.display = "none";
-    document.querySelector("#hardGame").style.display = "flex";
-  });
 //하다보니 함수만들어서 해도 좋을듯..
 
 //EASY

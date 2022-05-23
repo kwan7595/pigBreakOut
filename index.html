@@ -31,11 +31,23 @@
         <button class="settings__closeBtn">닫기</button>
       </div>
       <div id="difficulty">
-        <h1>난이도</h1>
+        <h1 class="difficulty__title">Difficulty</h1>
+        <img class="difficulty__wolf" src="src/wolfReverse.png" />
         <div class="difficulty__container">
-          <button class="difficulty__container__easy">Easy</button>
-          <button class="difficulty__container__normal">Normal</button>
-          <button class="difficulty__container__hard">Hard</button>
+          <img
+            class="difficulty__container__house1 difficultyHouseImg"
+            src="src/2_house_1.png"
+          />
+
+          <img
+            class="difficulty__container__house2 difficultyHouseImg"
+            src="src/2_house_2.png"
+          />
+
+          <img
+            class="difficulty__container__house3 difficultyHouseImg"
+            src="src/2_house_3.png"
+          />
         </div>
       </div>
       <div id="easyGame">
@@ -73,5 +85,6 @@
     <script src="js/easyGame.js"></script>
     <script src="js/normalGame.js"></script>
     <script src="js/hardGame.js"></script>
+    <script src="js/difficulty.js"></script>
   </body>
 </html>

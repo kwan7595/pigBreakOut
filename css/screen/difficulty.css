@@ -1,6 +1,39 @@
 #difficulty {
+  height: 600px;
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  position: relative;
+}
+.difficulty__title {
+  margin-top: 40px;
+  color: midnightblue;
+}
+.difficulty__wolf {
+  position: absolute;
+  left: -100px;
+  top: 500px;
+  width: 100px;
+}
+.difficulty__container {
+  width: 700px;
+  position: relative;
+}
+
+.difficultyHouseImg {
+  width: 140px;
+  position: absolute;
+  bottom: 150px;
+}
+
+.difficulty__container__house1 {
+  left: 80px;
+}
+
+.difficulty__container__house2 {
+  left: 300px;
+}
+.difficulty__container__house3 {
+  left: 520px;
 }
