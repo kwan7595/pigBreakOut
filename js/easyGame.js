@@ -118,15 +118,15 @@ function moveBall() {
 
 //ball과 벽 충돌 시 실행하는 함수
 function ballWallCollision() {
-  if (ball.x + ball.radius > cvs.width || ball.x - ball.radius < 0) {
+  if (ball.x+ ball.dx + ball.radius > cvs.width || ball.x + ball.dx - ball.radius < 0) {
     //오른쪽 벽에 부딪히거나 왼쪽벽에 부딪히면
     ball.dx = -ball.dx; //x변화량 반대로
   }
-  if (ball.y - ball.radius < 0) {
+  if (ball.y + ball.dy - ball.radius < 0) {
     //위쪽벽에 부딪히면
     ball.dy = -ball.dy; //y변화량 반대로
   }
-  if (ball.y + ball.radius > cvs.height) {
+  if (ball.y + ball.dy  + ball.radius > cvs.height) {
     //아래쪽 벽에 부딪히면
     LIFE--; //user 목숨 감소
     resetBall(); //ball 초기화
@@ -163,13 +163,14 @@ function ballPaddleCollision() {
 
 //brick 객체
 const brick = {
-  row: 3, //행 개수
+  row: 5, //행 개수
   column: 5, //열 개수
   width: 55, //brick 넓이
   height: 20, //brick 높이
-  offSetLeft: 20, //brick 왼쪽 여백
-  offSetTop: 20, //brick 위쪽 여백
+  offSetLeft: 0, //brick 왼쪽 여백
+  offSetTop: 0, //brick 위쪽 여백
   marginTop: 40, //맨위 brick과 캔버스사이 여백
+  marginLeft: 65, //맨 왼쪽 brick과 캔버스사이 여백
   fillColor: "Silver", //brick 배경색
   strokeColor: "MistyRose", //brick 테두리색
 };
@@ -182,7 +183,7 @@ function createBricks() {
     bricks[r] = []; //2차원배열생성
     for (var c = 0; c < brick.column; c++) {
       bricks[r][c] = {
-        x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft, //각 brick 마다의 x좌표 계산
+        x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft + brick.marginLeft, //각 brick 마다의 x좌표 계산
         y:
           r * (brick.offSetTop + brick.height) +
           brick.offSetTop +
@@ -216,10 +217,10 @@ function ballBrickCollision() {
       if (b.status) {
         //만약 brick이 깨지지 않았다면
         if (
-          ball.x + ball.radius > b.x && //ball의 오른쪽이 brick의 왼쪽에 맞으면
-          ball.x - ball.radius < b.x + brick.width && //ball의 왼쪽이 brick의 오른쪽에 맞으면
-          ball.y + ball.radius > b.y && //ball의 아래쪽이 brick의 위쪽에 맞으면
-          ball.y - ball.radius < b.y + brick.height //ball의 위쪽이 brick의 아래쪽에 맞으면
+          ball.x + ball.radius > b.x +1  && //ball의 오른쪽이 brick의 왼쪽에 맞으면
+          ball.x - ball.radius < b.x + brick.width -1 && //ball의 왼쪽이 brick의 오른쪽에 맞으면
+          ball.y + ball.radius > b.y +1 && //ball의 아래쪽이 brick의 위쪽에 맞으면
+          ball.y - ball.radius < b.y + brick.height -1 //ball의 위쪽이 brick의 아래쪽에 맞으면
         ) {
           ball.dy = -ball.dy; //방향변경 (수정필요할듯)
           b.status = false; // brick 깨짐
