@@ -27,6 +27,10 @@ function easyGameStart() {
   time = setInterval(easyLoop,10);
 }
 
+// const pig={
+//   x:
+// }
+
 //캔버스 변수선언
 var cvs = document.getElementById("easyCanvas");
 var ctx = cvs.getContext("2d");
@@ -191,7 +195,8 @@ var brick = {
   fillColor: "Silver", //brick 배경색
   strokeColor: "MistyRose", //brick 테두리색
 };
-
+var brickImg= new Image(brick.width,brick.height);
+brickImg.src="src/testbrick.png";
 var bricks = []; //brick담을 2차원배열
 
 //brick 처음 생성하는 함수
@@ -220,11 +225,7 @@ function drawBricks() {
     for (var c = 0; c < brick.column; c++) {
       var b = bricks[r][c];
       if (b.status) {
-        //만약 brick이 깨지지 않았다면 그리기
-        ctx.fillStyle = brick.fillColor;
-        ctx.fillRect(b.x, b.y, brick.width, brick.height);
-        ctx.strokeStyle = brick.strokeColor;
-        ctx.strokeRect(b.x, b.y, brick.width, brick.height);
+        ctx.drawImage(brickImg,b.x,b.y,brick.width,brick.height);
       }
     }
   }
