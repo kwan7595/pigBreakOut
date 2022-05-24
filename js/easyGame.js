@@ -1,16 +1,30 @@
+
 document
   .querySelector(".difficulty__container__house1")
   .addEventListener("click", () => {
     document.querySelector("#difficulty").style.display = "none";
     document.querySelector("#easyGame").style.display = "flex";
-    gameStart();
+    initEasyGame();
+    easyGameStart();
   });
-
 //break.js
-
-function gameStart() {
+var gamePause=false;
+var time;
+document // pause game..
+  .querySelector("#easyGame__pauseBtn")
+  .addEventListener("click",()=>{
+    if(gamePause){
+      gamePause=false;
+      time = setInterval(easyLoop,10);
+    }
+    else{
+      gamePause=true;
+      clearInterval(time);
+    }
+  });
+function easyGameStart() {
   createBricks();
-  time = setInterval(loop, 10); //속도조절
+  time = setInterval(easyLoop,10);
 }
 
 //캔버스 변수선언
@@ -165,9 +179,9 @@ function ballPaddleCollision() {
 }
 
 //brick 객체
-const brick = {
-  row: 5, //행 개수
-  column: 5, //열 개수
+var brick = {
+  row: 1, //행 개수
+  column: 1, //열 개수
   width: 55, //brick 넓이
   height: 20, //brick 높이
   offSetLeft: 0, //brick 왼쪽 여백
@@ -270,7 +284,7 @@ function gameOver() {
 }
 
 //게임 이겼는지 확인하는 함수
-function gameWin() {
+function easyGameWin() {
   var isGameWin = true;
   for (var r = 0; r < brick.row; r++) {
     for (var c = 0; c < brick.column; c++) {
@@ -281,15 +295,36 @@ function gameWin() {
     //이겼다면
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
+    setTimeout(()=>{ // 1초 후에 난이도 화면으로 넘어감.
+      document.querySelector("#easyGame").style.display="none";
+      document.querySelector("#difficulty").style.display="flex";
+      var easymode = document.querySelector(".difficulty__container__house1");
+      easymode.onclick=null;
+      easymode.setAttribute("src","none");
+      
+      //변수들 초기화 필요함..
+    },1000);  
   }
 }
-
+function initEasyGame(){
+  brick.row=1;
+  brick.col=1;
+  time=0;
+  LIFE=3;
+  score=0;
+  leftArrow=false;
+  rightArrow=false;
+  paddle.x =cvs.width/2 - PADDLE_WIDTH/2;
+  paddle.y =cvs.height - PADDLE_MARGIN_BOTTOM;
+  title.innerText="Easy Mode!";
+  resetBall();
+}
 //메인루프
-function loop() {
+function easyLoop() {
   ctx.clearRect(0, 0, cvs.width, cvs.height); //캔버스 초기화
   update();
   draw();
   showGameStats();
   gameOver();
-  gameWin();
+  easyGameWin();
 }

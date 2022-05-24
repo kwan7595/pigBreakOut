@@ -8,3 +8,11 @@
 #easyGame canvas {
   border: 3px solid aquamarine;
 }
+
+.easyGame__Btn{
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0px 10px;
+  text-align: center;
+}

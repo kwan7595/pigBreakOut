@@ -89,7 +89,11 @@
         </div>
       </div>
       <div id="easyGame">
-        <h1 class="easyGame__title">Easy Mode!</h1>
+        <div class="easyGame__UI UI">
+          <h1 class="easyGame__title UI__title">Easy Mode!</h1>
+          <button id="easyGame__mute" class="easyGame__Btn">m</button>
+          <button id="easyGame__pauseBtn" class="easyGame__Btn">Pause</button>
+        </div>
         <canvas id="easyCanvas" width="400px" height="500px"></canvas>
         <div class="easyGame__stats">
           <span class="easyGame__stats__life">Life : 0</span>
@@ -97,7 +101,11 @@
         </div>
       </div>
       <div id="normalGame">
-        <h1 class="normalGame__title">Normal Mode!</h1>
+        <div class="UI">
+          <h1 class="normalGame__title">Normal Mode!</h1>
+          <button id="normalGame__mute">m</button>
+          <button id="normalGame__pauseBtn">Pause</button>
+        </div>
         <canvas id="normalCanvas" width="400px" height="500px"></canvas>
         <div class="normalGame__stats">
           <span class="normalGame__stats__life">Life : 0</span>
@@ -105,7 +113,12 @@
         </div>
       </div>
       <div id="hardGame">
-        <h1 class="hardGame__title">Hard Mode!</h1>
+        <div class="UI">
+          <h1 class="hardGame__title">Hard Mode!</h1>
+          <button id="hardGame__mute">m</button>
+          <button id="hardGame__pauseBtn">Pause</button>
+        </div>
+        
         <canvas id="hardCanvas" width="400px" height="500px"></canvas>
         <div class="hardGame__stats">
           <span class="hardGame__stats__life">Life : 0</span>
