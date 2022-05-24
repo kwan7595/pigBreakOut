@@ -1,3 +1,9 @@
 #win {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#win__pigs{
+  width: 300px;
 }

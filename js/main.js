@@ -83,4 +83,7 @@ document.querySelectorAll(".story__text").item(2).addEventListener("click",() =>
 //NORMAL
 //HARD
 //WIN
+document.querySelector("#home").addEventListener("click",()=>{
+  window.location.reload();
+})
 //LOSE

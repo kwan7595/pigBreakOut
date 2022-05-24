@@ -275,11 +275,13 @@ function update() {
 }
 
 //게임 졌는지 확인하는 함수
-function gameOver() {
+function easyGameOver() {
   if (LIFE <= 0) {
     //졌다면
     clearInterval(time); //루프멈추고
-    title.innerText = "Game Over"; //게임 오버 출력
+    document.querySelector("#easyGame").style.display="none";
+    document.querySelector("#lose").append("SCORE:"+SCORE);
+    document.querySelector("#lose").style.display="flex";
   }
 }
 
@@ -301,8 +303,23 @@ function easyGameWin() {
       var easymode = document.querySelector(".difficulty__container__house1");
       easymode.onclick=null;
       easymode.setAttribute("src","none");
-      
-      //변수들 초기화 필요함..
+      document.querySelector(".difficulty__container__house2").style.opacity=1;
+      document.querySelector(".difficulty__container__house3").style.opacity=0.5;
+      document // add click event to next level
+      .querySelector(".difficulty__container__house2")
+      .addEventListener("click", () => {
+        document.querySelector("#difficulty").style.display = "none";
+        document.querySelector("#normalGame").style.display = "flex";
+        cvs = document.getElementById("normalCanvas");
+        ctx = cvs.getContext("2d");
+
+        lifeSpan = document.querySelector(".normalGame__stats__life");
+        scoreSpan = document.querySelector(".normalGame__stats__score");
+
+        title = document.querySelector(".normalGame__title");
+        initNormalGame();
+        normalGameStart();
+      });
     },1000);  
   }
 }
@@ -325,6 +342,6 @@ function easyLoop() {
   update();
   draw();
   showGameStats();
-  gameOver();
+  easyGameOver();
   easyGameWin();
 }
