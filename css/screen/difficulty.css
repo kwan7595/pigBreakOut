@@ -13,8 +13,9 @@
 .difficulty__wolf {
   position: absolute;
   left: -100px;
-  top: 500px;
+  bottom: 50px;
   width: 100px;
+  z-index: 1;
 }
 .difficulty__container {
   width: 700px;
