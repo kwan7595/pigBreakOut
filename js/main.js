@@ -55,12 +55,24 @@ document.querySelector(".settings__closeBtn").addEventListener("click", () => {
 });
 
 //STORY
-document.querySelector(".story__play").addEventListener("click", () => {
-  document.querySelector("#story").style.display = "none";
-  document.querySelector("#difficulty").style.display = "flex";
-});
-
 document.querySelector(".story__main").addEventListener("click", () => {
+  document.querySelector("#story").style.display = "none";
+  document.querySelector("#main").style.display = "flex";
+});
+document.querySelector(".main__btnBox__storyBtn").addEventListener("click",() => {
+  document.querySelectorAll(".story__text").item(0).style.display = "block";
+  document.querySelectorAll(".story__text").item(1).style.display = "none";
+  document.querySelectorAll(".story__text").item(2).style.display = "none";
+});
+document.querySelectorAll(".story__text").item(0).addEventListener("click",() => {
+  document.querySelectorAll(".story__text").item(0).style.display = "none";
+  document.querySelectorAll(".story__text").item(1).style.display = "block";
+});
+document.querySelectorAll(".story__text").item(1).addEventListener("click",() => {
+  document.querySelectorAll(".story__text").item(1).style.display = "none";
+  document.querySelectorAll(".story__text").item(2).style.display = "block";
+});
+document.querySelectorAll(".story__text").item(2).addEventListener("click",() => {
   document.querySelector("#story").style.display = "none";
   document.querySelector("#main").style.display = "flex";
 });
