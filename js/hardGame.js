@@ -13,32 +13,41 @@ document
     initHardGame();
     hardGameStart();
   });
-var gamePause=false;
+document.querySelector("#hardGame__muteBtn").addEventListener("click", () => {
+  var muteSrc = document.querySelector("#hardGame__muteBtn").src.split("/");
+  if (muteSrc[muteSrc.length - 1] == "mute.png") {
+    myaudio.pause();
+    document.querySelector("#hardGame__muteBtn").src = "./src/sound.png";
+  } else {
+    myaudio.play();
+    document.querySelector("#hardGame__muteBtn").src = "./src/mute.png";
+  }
+});
+var gamePause = false;
 document // pause game..
   .querySelector("#hardGame__pauseBtn")
-  .addEventListener("click",()=>{
-    if(gamePause){
-      gamePause=false;
-      time = setInterval(hardLoop,10);
-    }
-    else{
-      gamePause=true;
+  .addEventListener("click", () => {
+    if (gamePause) {
+      gamePause = false;
+      time = setInterval(hardLoop, 10);
+    } else {
+      gamePause = true;
       clearInterval(time);
     }
   });
-function hardGameStart(){
+function hardGameStart() {
   createBricks();
-  time = setInterval(hardLoop,10);
+  time = setInterval(hardLoop, 10);
 }
-function initHardGame(){
-  brick.row=1;
-  brick.column=3;
-  time=0;
-  leftArrow=false;
-  rightArrow=false;
-  paddle.x =cvs.width/2 - PADDLE_WIDTH/2;
-  paddle.y =cvs.height - PADDLE_MARGIN_BOTTOM;
-  title.innerText="Hard Mode!";
+function initHardGame() {
+  brick.row = 1;
+  brick.column = 3;
+  time = 0;
+  leftArrow = false;
+  rightArrow = false;
+  paddle.x = cvs.width / 2 - PADDLE_WIDTH / 2;
+  paddle.y = cvs.height - PADDLE_MARGIN_BOTTOM;
+  title.innerText = "Hard Mode!";
   resetBall();
 }
 //게임 이겼는지 확인하는 함수
@@ -53,11 +62,12 @@ function hardGameWin() {
     //이겼다면
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
-    setTimeout(()=>{ // 1초 후에 난이도 화면으로 넘어감.
-      document.querySelector("#hardGame").style.display="none";
-      document.querySelector("#difficulty").style.display="flex";
+    setTimeout(() => {
+      // 1초 후에 난이도 화면으로 넘어감.
+      document.querySelector("#hardGame").style.display = "none";
+      document.querySelector("#difficulty").style.display = "flex";
       //변수들 초기화 필요함..
-    },1000);  
+    }, 1000);
   }
 }
 function hardLoop() {

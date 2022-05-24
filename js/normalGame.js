@@ -13,32 +13,41 @@ document
     initNormalGame();
     normalGameStart();
   });
-var gamePause=false;
+document.querySelector("#normalGame__muteBtn").addEventListener("click", () => {
+  var muteSrc = document.querySelector("#normalGame__muteBtn").src.split("/");
+  if (muteSrc[muteSrc.length - 1] == "mute.png") {
+    myaudio.pause();
+    document.querySelector("#normalGame__muteBtn").src = "./src/sound.png";
+  } else {
+    myaudio.play();
+    document.querySelector("#normalGame__muteBtn").src = "./src/mute.png";
+  }
+});
+var gamePause = false;
 document // pause game..
   .querySelector("#normalGame__pauseBtn")
-  .addEventListener("click",()=>{
-    if(gamePause){
-      gamePause=false;
-      time = setInterval(loop,10);
-    }
-    else{
-      gamePause=true;
+  .addEventListener("click", () => {
+    if (gamePause) {
+      gamePause = false;
+      time = setInterval(loop, 10);
+    } else {
+      gamePause = true;
       clearInterval(time);
     }
   });
-function normalGameStart(){
+function normalGameStart() {
   createBricks();
-  time = setInterval(normalLoop,10);
+  time = setInterval(normalLoop, 10);
 }
-function initNormalGame(){
-  brick.row=1;
-  brick.column=2;
-  time=0;
-  leftArrow=false;
-  rightArrow=false;
-  paddle.x =cvs.width/2 - PADDLE_WIDTH/2;
-  paddle.y =cvs.height - PADDLE_MARGIN_BOTTOM;
-  title.innerText="Normal Mode!";
+function initNormalGame() {
+  brick.row = 1;
+  brick.column = 2;
+  time = 0;
+  leftArrow = false;
+  rightArrow = false;
+  paddle.x = cvs.width / 2 - PADDLE_WIDTH / 2;
+  paddle.y = cvs.height - PADDLE_MARGIN_BOTTOM;
+  title.innerText = "Normal Mode!";
   resetBall();
 }
 //게임 이겼는지 확인하는 함수
@@ -53,11 +62,12 @@ function normalGameWin() {
     //이겼다면
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
-    setTimeout(()=>{ // 1초 후에 난이도 화면으로 넘어감.
-      document.querySelector("#normalGame").style.display="none";
-      document.querySelector("#difficulty").style.display="flex";
+    setTimeout(() => {
+      // 1초 후에 난이도 화면으로 넘어감.
+      document.querySelector("#normalGame").style.display = "none";
+      document.querySelector("#difficulty").style.display = "flex";
       //변수들 초기화 필요함..
-    },1000);  
+    }, 1000);
   }
 }
 function normalLoop() {

@@ -1,4 +1,3 @@
-
 document
   .querySelector(".difficulty__container__house1")
   .addEventListener("click", () => {
@@ -8,23 +7,32 @@ document
     easyGameStart();
   });
 //break.js
-var gamePause=false;
+document.querySelector("#easyGame__muteBtn").addEventListener("click", () => {
+  var muteSrc = document.querySelector("#easyGame__muteBtn").src.split("/");
+  if (muteSrc[muteSrc.length - 1] == "mute.png") {
+    myaudio.pause();
+    document.querySelector("#easyGame__muteBtn").src = "./src/sound.png";
+  } else {
+    myaudio.play();
+    document.querySelector("#easyGame__muteBtn").src = "./src/mute.png";
+  }
+});
+var gamePause = false;
 var time;
 document // pause game..
   .querySelector("#easyGame__pauseBtn")
-  .addEventListener("click",()=>{
-    if(gamePause){
-      gamePause=false;
-      time = setInterval(easyLoop,10);
-    }
-    else{
-      gamePause=true;
+  .addEventListener("click", () => {
+    if (gamePause) {
+      gamePause = false;
+      time = setInterval(easyLoop, 10);
+    } else {
+      gamePause = true;
       clearInterval(time);
     }
   });
 function easyGameStart() {
   createBricks();
-  time = setInterval(easyLoop,10);
+  time = setInterval(easyLoop, 10);
 }
 
 //캔버스 변수선언
@@ -295,28 +303,29 @@ function easyGameWin() {
     //이겼다면
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
-    setTimeout(()=>{ // 1초 후에 난이도 화면으로 넘어감.
-      document.querySelector("#easyGame").style.display="none";
-      document.querySelector("#difficulty").style.display="flex";
+    setTimeout(() => {
+      // 1초 후에 난이도 화면으로 넘어감.
+      document.querySelector("#easyGame").style.display = "none";
+      document.querySelector("#difficulty").style.display = "flex";
       var easymode = document.querySelector(".difficulty__container__house1");
-      easymode.onclick=null;
-      easymode.setAttribute("src","none");
-      
+      easymode.onclick = null;
+      easymode.setAttribute("src", "none");
+
       //변수들 초기화 필요함..
-    },1000);  
+    }, 1000);
   }
 }
-function initEasyGame(){
-  brick.row=1;
-  brick.col=1;
-  time=0;
-  LIFE=3;
-  score=0;
-  leftArrow=false;
-  rightArrow=false;
-  paddle.x =cvs.width/2 - PADDLE_WIDTH/2;
-  paddle.y =cvs.height - PADDLE_MARGIN_BOTTOM;
-  title.innerText="Easy Mode!";
+function initEasyGame() {
+  brick.row = 1;
+  brick.col = 1;
+  time = 0;
+  LIFE = 3;
+  score = 0;
+  leftArrow = false;
+  rightArrow = false;
+  paddle.x = cvs.width / 2 - PADDLE_WIDTH / 2;
+  paddle.y = cvs.height - PADDLE_MARGIN_BOTTOM;
+  title.innerText = "Easy Mode!";
   resetBall();
 }
 //메인루프
