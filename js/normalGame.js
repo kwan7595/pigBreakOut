@@ -1,18 +1,3 @@
-document
-  .querySelector(".difficulty__container__house2")
-  .addEventListener("click", () => {
-    document.querySelector("#difficulty").style.display = "none";
-    document.querySelector("#normalGame").style.display = "flex";
-    cvs = document.getElementById("normalCanvas");
-    ctx = cvs.getContext("2d");
-
-    lifeSpan = document.querySelector(".normalGame__stats__life");
-    scoreSpan = document.querySelector(".normalGame__stats__score");
-
-    title = document.querySelector(".normalGame__title");
-    initNormalGame();
-    normalGameStart();
-  });
 document.querySelector("#normalGame__muteBtn").addEventListener("click", () => {
   var muteSrc = document.querySelector("#normalGame__muteBtn").src.split("/");
   if (muteSrc[muteSrc.length - 1] == "mute.png") {
@@ -29,7 +14,7 @@ document // pause game..
   .addEventListener("click", () => {
     if (gamePause) {
       gamePause = false;
-      time = setInterval(loop, 10);
+      time = setInterval(normalLoop, 10);
     } else {
       gamePause = true;
       clearInterval(time);
@@ -37,11 +22,13 @@ document // pause game..
   });
 function normalGameStart() {
   createBricks();
+  createPig();
   time = setInterval(normalLoop, 10);
 }
 function initNormalGame() {
-  brick.row = 1;
-  brick.column = 2;
+  isPigHit=false;
+  brick.row = 7;
+  brick.column = 5;
   time = 0;
   leftArrow = false;
   rightArrow = false;
@@ -64,13 +51,19 @@ function normalGameOver() {
 //게임 이겼는지 확인하는 함수
 function normalGameWin() {
   var isGameWin = true;
-  for (var r = 0; r < brick.row; r++) {
-    for (var c = 0; c < brick.column; c++) {
-      isGameWin = isGameWin && !bricks[r][c].status; //하나라도 안깨진 brick 존재하면 isGameWin == false
+  if(!isPigHit){
+    for (var r = 0; r < brick.row; r++) {
+      for (var c = 0; c < brick.column; c++) {
+        isGameWin = isGameWin && !bricks[r][c].status; //하나라도 안깨진 brick 존재하면 isGameWin == false
+      }
     }
   }
   if (isGameWin) {
     //이겼다면
+    if(isPigHit){ // 돼지 찾아서 이긴거면
+      bricksToScore(); // 남은 brick 점수추가
+      SCORE+=70; //돼지 점수.
+    }
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
     setTimeout(() => {
