@@ -119,8 +119,10 @@
       <div id="easyGame">
         <div class="easyGame__UI UI">
           <h1 class="easyGame__title UI__title">Easy Mode!</h1>
-          <button id="easyGame__mute" class="easyGame__Btn">m</button>
-          <button id="easyGame__pauseBtn" class="easyGame__Btn">Pause</button>
+          <div class="easyGame__Btn">
+            <img src="src/mute.png" id="easyGame__muteBtn" />
+            <img src="src/pause.png" id="easyGame__pauseBtn" />
+          </div>
         </div>
         <canvas id="easyCanvas" width="400px" height="500px"></canvas>
         <div class="easyGame__stats">
@@ -131,8 +133,10 @@
       <div id="normalGame">
         <div class="UI">
           <h1 class="normalGame__title">Normal Mode!</h1>
-          <button id="normalGame__mute">m</button>
-          <button id="normalGame__pauseBtn">Pause</button>
+          <div class="normalGame__Btn">
+            <img src="src/mute.png" id="normalGame__muteBtn" />
+            <img src="src/pause.png" id="normalGame__pauseBtn" />
+          </div>
         </div>
         <canvas id="normalCanvas" width="400px" height="500px"></canvas>
         <div class="normalGame__stats">
@@ -143,8 +147,10 @@
       <div id="hardGame">
         <div class="UI">
           <h1 class="hardGame__title">Hard Mode!</h1>
-          <button id="hardGame__mute">m</button>
-          <button id="hardGame__pauseBtn">Pause</button>
+          <div class="hardGame__Btn">
+            <img src="src/mute.png" id="hardGame__muteBtn" />
+            <img src="src/pause.png" id="hardGame__pauseBtn" />
+          </div>
         </div>
 
         <canvas id="hardCanvas" width="400px" height="500px"></canvas>
@@ -159,7 +165,7 @@
       </div>
       <div id="lose">
         <h1>You lose..</h1>
-        <img src="src/wolf_3.png" id="lose__wolf"/>
+        <img src="src/wolf_3.png" id="lose__wolf" />
       </div>
     </div>
 
