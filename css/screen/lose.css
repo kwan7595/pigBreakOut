@@ -1,3 +1,9 @@
 #lose {
   display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#lose__wolf{
+  width: 200px;
 }

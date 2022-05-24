@@ -1,18 +1,3 @@
-document
-  .querySelector(".difficulty__container__house3")
-  .addEventListener("click", () => {
-    document.querySelector("#difficulty").style.display = "none";
-    document.querySelector("#hardGame").style.display = "flex";
-    cvs = document.getElementById("hardCanvas");
-    ctx = cvs.getContext("2d");
-
-    lifeSpan = document.querySelector(".hardGame__stats__life");
-    scoreSpan = document.querySelector(".hardGame__stats__score");
-
-    title = document.querySelector(".hardGame__title");
-    initHardGame();
-    hardGameStart();
-  });
 var gamePause=false;
 document // pause game..
   .querySelector("#hardGame__pauseBtn")
@@ -41,6 +26,17 @@ function initHardGame(){
   title.innerText="Hard Mode!";
   resetBall();
 }
+//게임 졌는지 확인하는 함수
+function hardGameOver() {
+  if (LIFE <= 0) {
+    //졌다면
+    clearInterval(time); //루프멈추고
+    document.querySelector("#hardGame").style.display="none";
+    document.querySelector("#lose").append("score:"+SCORE);
+    document.querySelector("#lose").style.display="flex";
+  }
+}
+
 //게임 이겼는지 확인하는 함수
 function hardGameWin() {
   var isGameWin = true;
@@ -55,8 +51,8 @@ function hardGameWin() {
     title.innerText = "You Win!"; //게임 승리 출력
     setTimeout(()=>{ // 1초 후에 난이도 화면으로 넘어감.
       document.querySelector("#hardGame").style.display="none";
-      document.querySelector("#difficulty").style.display="flex";
-      //변수들 초기화 필요함..
+      document.querySelector("#win").style.display="flex";
+      document.querySelector("#win").append("SCORE:"+SCORE).append("LIFE:"+LIFE);
     },1000);  
   }
 }
@@ -65,6 +61,6 @@ function hardLoop() {
   update();
   draw();
   showGameStats();
-  gameOver();
+  hardGameOver();
   hardGameWin();
 }

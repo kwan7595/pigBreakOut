@@ -94,4 +94,7 @@ document
 //NORMAL
 //HARD
 //WIN
+document.querySelector("#home").addEventListener("click",()=>{
+  window.location.reload();
+})
 //LOSE

@@ -51,7 +51,6 @@
   width: 200px;
   margin: 20px 30px 0px 30px;
 }
-
 .UI{
   display: flex;
   flex-direction: row;
@@ -63,4 +62,12 @@
   display: block;
   
 }
-
+.difficulty__container__house1{
+  opacity: 1;
+}
+.difficulty__container__house2{
+  opacity: 0.6;
+}
+.difficulty__container__house3{
+  opacity: 0.3;
+}
