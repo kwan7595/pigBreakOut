@@ -1,6 +1,4 @@
 #settings {
-  font-family: "Patua One", cursive;
-  color: black !important;
   display: none;
   position: absolute;
   z-index: 1;
@@ -29,7 +27,11 @@
   width: 250px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-right: 40px;
+}
+.settings__label__bgm div {
+  padding: 5px;
 }
 
 .settings__label__paddle {
@@ -56,4 +58,10 @@
   display: flex;
   justify-content: space-around;
   margin-right: 40px;
+}
+.settings__label__bckImg div {
+  padding: 5px;
+}
+.settings__label__bckImg__day {
+  background-color: aquamarine;
 }

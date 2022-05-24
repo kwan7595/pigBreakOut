@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
 }
-.story_contents{
+.story_contents {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,26 +18,32 @@
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
-
-.story__buttons{
+.story__text p {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+}
+.story__buttons {
   display: flex;
   flex-direction: row;
-  position:absolute;
+  position: absolute;
   top: 35px;
   left: 50px;
   align-items: center;
   justify-content: center;
 }
 
-.story__main{
+.story__main {
   display: block;
   width: 150px;
   margin: 20px 30px 0px 30px;
 }
 
-.story__wolf{
+.story__wolf {
   display: block;
   position: absolute;
   width: 260px;
@@ -45,21 +51,21 @@
   bottom: 30px;
 }
 
-.story__pig1{
+.story__pig1 {
   display: block;
   position: absolute;
   width: 33px;
   right: 140px;
   bottom: 165px;
 }
-.story__pig2{
+.story__pig2 {
   display: block;
   position: absolute;
   width: 30px;
   right: 85px;
   bottom: 165px;
 }
-.story__pig3{
+.story__pig3 {
   display: block;
   position: absolute;
   width: 27px;
@@ -67,28 +73,28 @@
   bottom: 165px;
 }
 
-.story__house1{
+.story__house1 {
   display: block;
   position: absolute;
   width: 70px;
   right: 125px;
   bottom: 170px;
 }
-.story__house2{
+.story__house2 {
   display: block;
   position: absolute;
   width: 70px;
   right: 60px;
   bottom: 170px;
 }
-.story__house3{
+.story__house3 {
   display: block;
   position: absolute;
   width: 70px;
   right: -2px;
   bottom: 170px;
 }
-.story__daddy{
+.story__daddy {
   display: block;
   position: absolute;
   width: 120px;
