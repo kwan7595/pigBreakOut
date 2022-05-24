@@ -55,38 +55,56 @@ document.querySelector(".settings__closeBtn").addEventListener("click", () => {
 });
 
 //STORY
-document.querySelector(".story__main").addEventListener("click", () => {
-  document.querySelector("#story").style.display = "none";
-  document.querySelector("#main").style.display = "flex";
+document.querySelector(".story__contents__p1").addEventListener("click", () => {
+  document.querySelector(".story__contents__p1").style.display = "none";
+  document.querySelector(".story__contents__p2").style.display = "block";
 });
-document
-  .querySelector(".main__btnBox__storyBtn")
-  .addEventListener("click", () => {
-    document.querySelectorAll(".story__text").item(0).style.display = "block";
-    document.querySelectorAll(".story__text").item(1).style.display = "none";
-    document.querySelectorAll(".story__text").item(2).style.display = "none";
-  });
-document
-  .querySelectorAll(".story__text")
-  .item(0)
-  .addEventListener("click", () => {
-    document.querySelectorAll(".story__text").item(0).style.display = "none";
-    document.querySelectorAll(".story__text").item(1).style.display = "block";
-  });
-document
-  .querySelectorAll(".story__text")
-  .item(1)
-  .addEventListener("click", () => {
-    document.querySelectorAll(".story__text").item(1).style.display = "none";
-    document.querySelectorAll(".story__text").item(2).style.display = "block";
-  });
-document
-  .querySelectorAll(".story__text")
-  .item(2)
-  .addEventListener("click", () => {
-    document.querySelector("#story").style.display = "none";
-    document.querySelector("#main").style.display = "flex";
-  });
+document.querySelector(".story__contents__p2").addEventListener("click", () => {
+  document.querySelector(".story__contents__p2").style.display = "none";
+  document.querySelector(".story__contents__p3").style.display = "block";
+});
+document.querySelector(".story__contents__p3").addEventListener("click", () => {
+  document.querySelector(".story__contents__p3").style.display = "none";
+  document.querySelector(".story__contents__p1").style.display = "block";
+  document.querySelector("#main").style.display = "flex";
+  document.querySelector("#story").style.display = "none";
+});
+document.querySelector(".story__main").addEventListener("click", () => {
+  document.querySelector("#main").style.display = "flex";
+  document.querySelector("#story").style.display = "none";
+});
+// document.querySelector(".story__main").addEventListener("click", () => {
+//   document.querySelector("#story").style.display = "none";
+//   document.querySelector("#main").style.display = "flex";
+// });
+// document
+//   .querySelector(".main__btnBox__storyBtn")
+//   .addEventListener("click", () => {
+//     document.querySelectorAll(".story__text").item(0).style.display = "block";
+//     document.querySelectorAll(".story__text").item(1).style.display = "none";
+//     document.querySelectorAll(".story__text").item(2).style.display = "none";
+//   });
+// document
+//   .querySelectorAll(".story__text")
+//   .item(0)
+//   .addEventListener("click", () => {
+//     document.querySelectorAll(".story__text").item(0).style.display = "none";
+//     document.querySelectorAll(".story__text").item(1).style.display = "block";
+//   });
+// document
+//   .querySelectorAll(".story__text")
+//   .item(1)
+//   .addEventListener("click", () => {
+//     document.querySelectorAll(".story__text").item(1).style.display = "none";
+//     document.querySelectorAll(".story__text").item(2).style.display = "block";
+//   });
+// document
+//   .querySelectorAll(".story__text")
+//   .item(2)
+//   .addEventListener("click", () => {
+//     document.querySelector("#story").style.display = "none";
+//     document.querySelector("#main").style.display = "flex";
+//   });
 
 //하다보니 함수만들어서 해도 좋을듯..
 

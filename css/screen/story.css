@@ -3,44 +3,45 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
 }
-.story_contents {
+
+.story__contents {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-.story__text {
-  display: flex;
-  width: 500px;
+  width: 490px;
   height: 380px;
-  background-color: beige;
-  border: 10px solid orange;
+  background-color: wheat;
+  border: orange 10px solid;
   border-radius: 20px;
-  justify-content: center;
-  align-items: center;
 }
-.story__text p {
-  width: 400px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 30px;
+.story__contents p {
+  text-align: center;
+  height: 380px;
+  padding-top: 240px;
 }
+.story__contents__p2 {
+  display: none;
+}
+.story__contents__p3 {
+  display: none;
+}
+
 .story__buttons {
   display: flex;
   flex-direction: row;
   position: absolute;
-  top: 35px;
-  left: 50px;
+  top: 40px;
+  left: 45px;
   align-items: center;
   justify-content: center;
 }
 
 .story__main {
   display: block;
-  width: 150px;
-  margin: 20px 30px 0px 30px;
+  width: 75px;
+  margin-left: 120px;
 }
 
 .story__wolf {
