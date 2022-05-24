@@ -273,7 +273,7 @@ function createPig(){ //pig 생성자
   pig.xindex=xindex;
   pig.yindex=yindex;
   pig.x=bricks[xindex][yindex].x;
-  pig.y=bricks[yindex][yindex].y;
+  pig.y=bricks[xindex][yindex].y;
 }
 var pigImg= new Image(pig.width,pig.height);
 pigImg.src="src/pigs_1.png";
