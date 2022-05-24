@@ -1,18 +1,3 @@
-document
-  .querySelector(".difficulty__container__house3")
-  .addEventListener("click", () => {
-    document.querySelector("#difficulty").style.display = "none";
-    document.querySelector("#hardGame").style.display = "flex";
-    cvs = document.getElementById("hardCanvas");
-    ctx = cvs.getContext("2d");
-
-    lifeSpan = document.querySelector(".hardGame__stats__life");
-    scoreSpan = document.querySelector(".hardGame__stats__score");
-
-    title = document.querySelector(".hardGame__title");
-    initHardGame();
-    hardGameStart();
-  });
 document.querySelector("#hardGame__muteBtn").addEventListener("click", () => {
   var muteSrc = document.querySelector("#hardGame__muteBtn").src.split("/");
   if (muteSrc[muteSrc.length - 1] == "mute.png") {
@@ -37,11 +22,13 @@ document // pause game..
   });
 function hardGameStart() {
   createBricks();
+  createPig();
   time = setInterval(hardLoop, 10);
 }
 function initHardGame() {
-  brick.row = 1;
-  brick.column = 3;
+  isPigHit=false;
+  brick.row = 9;
+  brick.column = 5;
   time = 0;
   leftArrow = false;
   rightArrow = false;
@@ -64,13 +51,19 @@ function hardGameOver() {
 //게임 이겼는지 확인하는 함수
 function hardGameWin() {
   var isGameWin = true;
-  for (var r = 0; r < brick.row; r++) {
-    for (var c = 0; c < brick.column; c++) {
-      isGameWin = isGameWin && !bricks[r][c].status; //하나라도 안깨진 brick 존재하면 isGameWin == false
+  if(!isPigHit){
+    for (var r = 0; r < brick.row; r++) {
+      for (var c = 0; c < brick.column; c++) {
+        isGameWin = isGameWin && !bricks[r][c].status; //하나라도 안깨진 brick 존재하면 isGameWin == false
+      }
     }
   }
   if (isGameWin) {
     //이겼다면
+    if(isPigHit){ // 돼지 찾아서 이긴거면
+      bricksToScore(); // 남은 brick 점수추가
+      SCORE+=100; //돼지 점수.
+    }
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
     setTimeout(() => {

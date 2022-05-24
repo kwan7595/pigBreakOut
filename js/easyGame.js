@@ -1,3 +1,4 @@
+//on_click event
 document
   .querySelector(".difficulty__container__house1")
   .addEventListener("click", () => {
@@ -30,8 +31,10 @@ document // pause game..
       clearInterval(time);
     }
   });
+//startGame
 function easyGameStart() {
   createBricks();
+  createPig();
   time = setInterval(easyLoop, 10);
 }
 
@@ -59,7 +62,7 @@ var SCORE = 0; //user 점수
 //캔버스 border
 ctx.lineWidth = 3;
 
-//paddle객체
+//#region paddle - paddle객체 및 관련함수
 const paddle = {
   x: cvs.width / 2 - PADDLE_WIDTH / 2, //paddle x좌표 (초기 좌표는 캔버스 넓이의 1/2에서 paddle의 넓이 뺀 값)
   y: cvs.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT, //paddle y좌표 (사각형의 x좌표와 y좌표는 왼쪽 상단 모서리의 좌표)
@@ -107,8 +110,8 @@ function movePaddle() {
     paddle.x -= paddle.dx;
   }
 }
-
-//ball객체
+//#endregion --paddle
+//#region ball - ball 객체 및 관련함수
 const ball = {
   x: cvs.width / 2, //ball x좌표 (초기 좌표는 캔버스넓이의 1/2)
   y: paddle.y - BALL_RADIUS, //ball의 y좌표 (원의 x좌표와 y좌표는 원의 중심)
@@ -185,10 +188,10 @@ function ballPaddleCollision() {
     ball.dy = -ball.speed * Math.cos(angle); //cos(a) = ball.dy/ball.speed 에서 유도 (y는 뒤집어줘야하므로 - 붙혀줌)
   }
 }
-
-//brick 객체
+//#endregion - ball
+//#region brick - brick 객체 및 관련함수
 var brick = {
-  row: 5, //행 개수
+  row: 6, //행 개수
   column: 5, //열 개수
   width: 55, //brick 넓이
   height: 20, //brick 높이
@@ -196,8 +199,6 @@ var brick = {
   offSetTop: 0, //brick 위쪽 여백
   marginTop: 40, //맨위 brick과 캔버스사이 여백
   marginLeft: 65, //맨 왼쪽 brick과 캔버스사이 여백
-  fillColor: "Silver", //brick 배경색
-  strokeColor: "MistyRose", //brick 테두리색
 };
 var brickImg= new Image(brick.width,brick.height);
 brickImg.src="src/testbrick.png";
@@ -242,10 +243,10 @@ function ballBrickCollision() {
       if (b.status) {
         //만약 brick이 깨지지 않았다면
         if (
-          ball.x + ball.radius > b.x + 1 && //ball의 오른쪽이 brick의 왼쪽에 맞으면
-          ball.x - ball.radius < b.x + brick.width - 1 && //ball의 왼쪽이 brick의 오른쪽에 맞으면
-          ball.y + ball.radius > b.y + 1 && //ball의 아래쪽이 brick의 위쪽에 맞으면
-          ball.y - ball.radius < b.y + brick.height - 1 //ball의 위쪽이 brick의 아래쪽에 맞으면
+          ball.x > b.x  && //ball의 오른쪽이 brick의 왼쪽에 맞으면
+          ball.x  < b.x + brick.width  && //ball의 왼쪽이 brick의 오른쪽에 맞으면
+          ball.y > b.y  && //ball의 아래쪽이 brick의 위쪽에 맞으면
+          ball.y  < b.y + brick.height  //ball의 위쪽이 brick의 아래쪽에 맞으면
         ) {
           ball.dy = -ball.dy; //방향변경 (수정필요할듯)
           b.status = false; // brick 깨짐
@@ -255,17 +256,25 @@ function ballBrickCollision() {
     }
   }
 }
-//돼지 객체
+//#endregion - brick
+//#region pig - pig 객체 및 관련함수
 var isPigHit=false;
-const pig={ // x,y좌표는 벽돌 내부 꼭짓점중 하나(반드시 4개의 블럭으로 둘러쌓여있음)
-  xindex:Math.floor(Math.random()*(brick.column-1))+1, //xindex
-  yindex:Math.floor(Math.random()*(brick.row-1))+1,//yindex
-  x:bricks[xindex][yindex].x, //x좌표
-  y:bricks[xindex][yindex].y,//y좌표
+var pig={ // x,y좌표는 벽돌 내부 꼭짓점중 하나(반드시 4개의 블럭으로 둘러쌓여있음)
+  xindex:1,
+  yindex:1,
+  x:1,
+  y:1,
   width:30,
   height:30,
-  hitable:false
 };
+function createPig(){ //pig 생성자
+  var xindex=Math.floor(Math.random()*(brick.row-1))+1; //xindex
+  var yindex=Math.floor(Math.random()*(brick.column-1))+1;//yindex
+  pig.xindex=xindex;
+  pig.yindex=yindex;
+  pig.x=bricks[xindex][yindex].x;
+  pig.y=bricks[yindex][yindex].y;
+}
 var pigImg= new Image(pig.width,pig.height);
 pigImg.src="src/pigs_1.png";
 function drawPig(){
@@ -273,24 +282,24 @@ function drawPig(){
 }
 function isPigShown(){
   if( //자기를 둘러싸고 있는 벽돌이 다 깨지면
-    !bricks[pig.xindex-1][pig.yindex]&&  
-    !bricks[pig.xindex-1][pig.yindex-1]&& 
-    !bricks[pig.xindex][pig.yindex]&&  
-    !bricks[pig.xindex][pig.yindex-1]
-  ) pig.hitable=true; // 깰 수 있도록 바꾼다.
-}
-function ballPigCollision(){
-  if(pig.hitable){ // pig가 들어난 상태라면.
-    if( //pig가 맞으면
-      ball.x + ball.radius>pig.x+1&&
-      ball.x - ball.radius<pig.x +pig.width-1&&
-      ball.y + ball.radius > pig.y + 1&&
-      ball.y - ball.radius < pig.y+pig.height -1
-      ){
-        isPigHit=true;
-        SCORE+=50;
-      }
+    !bricks[pig.xindex-1][pig.yindex].status&&  
+    !bricks[pig.xindex-1][pig.yindex-1].status&& 
+    !bricks[pig.xindex][pig.yindex].status&&  
+    !bricks[pig.xindex][pig.yindex-1].status
+  ){
+    isPigHit=true; //게임끝!
   }
+}
+//#endregion - pig
+function bricksToScore(){ // 남은 벽돌 추가점수 부여 함수.
+  var bonusScore=0;
+  for(var r=0;r<brick.row;r++){
+    for(var c=0;c<brick.column;c++){
+      var b=bricks[r][c];
+      if(b.status) bonusScore+=2;
+    }
+  }
+  SCORE+=bonusScore;
 }
 //user 목숨과 점수 업데이트
 function showGameStats() {
@@ -311,7 +320,7 @@ function draw() {
 function update() {
   movePaddle();
   moveBall();
-  ballPigCollision();
+  isPigShown();
   ballWallCollision();
   ballPaddleCollision();
   ballBrickCollision();
@@ -331,13 +340,19 @@ function easyGameOver() {
 //게임 이겼는지 확인하는 함수
 function easyGameWin() {
   var isGameWin = true;
-  for (var r = 0; r < brick.row; r++) {
-    for (var c = 0; c < brick.column; c++) {
-      isGameWin = isGameWin && (!bricks[r][c].status||isPigHit); //하나라도 안깨진 brick 존재하면 isGameWin == false, 돼지 찾으면 끝.
+  if(!isPigHit){ // pig가 맞지 않았다면..
+    for (var r = 0; r < brick.row; r++) {
+      for (var c = 0; c < brick.column; c++) {
+        isGameWin = isGameWin && !bricks[r][c].status; //하나라도 안깨진 brick 존재하면 isGameWin == false, 돼지 찾으면 끝.
+      }
     }
-  }
+  }//맞으면 그냥 바로 넘어감.
   if (isGameWin) {
     //이겼다면
+    if(isPigHit){ // 돼지 찾아서 이긴거면
+      bricksToScore(); // 남은 brick 점수추가
+      SCORE+=50; //돼지 점수.
+    }
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
     setTimeout(() => {
