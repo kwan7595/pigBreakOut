@@ -11,13 +11,26 @@
   <body>
     <div id="pageWrapper">
       <div id="main">
-        <img src="src/1_wolf.png" class="main__wolf">
-        <img src="src/4_title.png" class="main__title">
-        <img src="src/2_house.png" class="main__house">
+        <img src="src/1_wolf.png" class="main__wolf" />
+        <img src="src/4_title.png" class="main__title" />
+        <img src="src/pigs_1.png" class="main__pig main__pig1" />
+        <img src="src/pigs_2.png" class="main__pig main__pig2" />
+        <img src="src/pigs_3.png" class="main__pig main__pig3" />
+
+        <img src="src/2_house.png" class="main__house" />
         <div class="main__btnBox">
-          <img src="src/3_button_option.png" class="btnBox main__btnBox__setBtn">
-          <img src="src/3_button_eat.png" class="btnBox main__btnBox__playBtn">
-          <img src="src/3_button_story.png" class="btnBox main__btnBox__storyBtn">
+          <img
+            src="src/3_button_option.png"
+            class="btnBox main__btnBox__setBtn"
+          />
+          <img
+            src="src/3_button_eat.png"
+            class="btnBox main__btnBox__playBtn"
+          />
+          <img
+            src="src/3_button_story.png"
+            class="btnBox main__btnBox__storyBtn"
+          />
         </div>
       </div>
       <div id="story">
@@ -32,15 +45,32 @@
         </div>
       </div>
       <div id="settings">
-        <div>BGM</div>
-        <div>늑대 선택</div>
-        <div>Paddle 선택</div>
-        <div>배경 선택</div>
+        <div class="settings__label">
+          <span>BGM</span>
+          <div class="settings__label__bgm">
+            <div class="settings__label__bgm__bgm1">BGM 1</div>
+            <div class="settings__label__bgm__bgm2">BGM 2</div>
+          </div>
+        </div>
+        <div class="settings__label">
+          <span>Paddle</span>
+          <div class="settings__label__paddle">
+            <div class="settings__label__paddle__paddle1"></div>
+            <div class="settings__label__paddle__paddle2"></div>
+          </div>
+        </div>
+        <div class="settings__label">
+          <span>Background Image</span>
+          <div class="settings__label__bckImg">
+            <div class="settings__label__bckImg__day">Day</div>
+            <div class="settings__label__bckImg__night">Night</div>
+          </div>
+        </div>
         <button class="settings__closeBtn">닫기</button>
       </div>
       <div id="difficulty">
         <h1 class="difficulty__title">Difficulty</h1>
-        <img class="difficulty__wolf" src="src/wolfReverse.png" />
+        <img class="difficulty__wolf" src="src/wolf_2.png" />
         <div class="difficulty__container">
           <img
             class="difficulty__container__house1 difficultyHouseImg"
@@ -103,6 +133,7 @@
       </div>
     </div>
     <script src="js/main.js"></script>
+    <script src="js/settings.js"></script>
     <script src="js/easyGame.js"></script>
     <script src="js/normalGame.js"></script>
     <script src="js/hardGame.js"></script>
