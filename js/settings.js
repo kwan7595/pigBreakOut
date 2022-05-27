@@ -33,7 +33,7 @@ document
     document.querySelector(
       ".settings__label__bckImg__day"
     ).style.backgroundColor = "aquamarine";
-    document.querySelector(".difficulty__title").style.color = "rgb(0, 3, 190)";
+    document.querySelector("body").style.color = "rgb(0, 3, 190)";
   });
 
 document
@@ -41,7 +41,7 @@ document
   .addEventListener("click", () => {
     document.querySelector("#pageWrapper").style.backgroundImage =
       'url("src/background_night.png")';
-    document.querySelector(".difficulty__title").style.color = "#FA64AF";
+    document.querySelector("body").style.color = "#FA64AF";
     document.querySelector(
       ".settings__label__bckImg__day"
     ).style.backgroundColor = "beige";

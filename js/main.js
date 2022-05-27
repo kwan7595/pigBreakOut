@@ -4,6 +4,7 @@ const storyBtn = document.querySelector(".main__btnBox__storyBtn");
 const setBtn = document.querySelector(".main__btnBox__setBtn");
 
 //button click events
+document.querySelector("body").style.color = "rgb(0, 3, 190)";
 playBtn.addEventListener("click", () => {
   document.querySelector("#main").style.display = "none";
   document.querySelector("#difficulty").style.display = "flex";
