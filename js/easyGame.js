@@ -168,7 +168,7 @@ function ballWallCollision() {
     //위쪽벽에 부딪히면
     ball.dy = -ball.dy; //y변화량 반대로
   }
-  if (ball.y + ball.dy + ball.radius > cvs.height) {
+  if (ball.y + ball.dy - ball.radius > cvs.height) {
     //아래쪽 벽에 부딪히면
     LIFE--; //user 목숨 감소
     resetBall(); //ball 초기화
@@ -249,49 +249,28 @@ function drawBricks() {
     }
   }
 }
-function isPointInCircle(tball,x,y){
-  var dx = tball.x - x;
-  var dy = tball.y - y;
-  var length = Math.sqrt(dx*dx+dy*dy);
-  if(length>tball.radius) return false;
-  return true;
-}
-function isCollision(tball,tbrick){
-  if((tbrick.x<=tball.x&&tball.x<=tbrick.x+brick.width)|| // 공의 중심이 
-    (tbrick.y<=tball.y&&tball.y<=tbrick.y-brick.height)){
-       //확장한 사각형
-      var left = tbrick.x - tball.radius;
-      var right = tbrick.x + brick.width + tball.radius;
-      var top = tbrick.y + brick.height -ball.radius;
-      var bottom = tbrick.y + ball.radius;
-      if((left<tball.x&&tball.x<right)&&(top<tball.y&&tball.y<bottom)){
-        return true;
-      }
-    } 
-  else{ //꼭짓점 확인
-    if(isPointInCircle(tball,tbrick.x,tbrick.y)) return true;
-    if(isPointInCircle(tball,tbrick.x,tbrick.y-brick.height)) return true;
-    if(isPointInCircle(tball,tbrick.x+brick.width,tbrick.y)) return true;
-    if(isPointInCircle(tball,tbrick.x+brick.width,tbrick.y-brick.height)) return true;
-  }
-  return false;
-}
+
 function ballBrickCollision() {
   for (var r = 0; r < brick.row; r++) {
     for (var c = 0; c < brick.column; c++) {
       var b = bricks[r][c];
-      if (b.status) {
-        //if(isCollision(ball,b))
-        //만약 brick이 깨지지 않았다면
+      if (b.status) { //만약 brick이 깨지지 않았다면
         if (
-          ball.x + ball.radius > b.x+2 && //ball의 오른쪽이 brick의 왼쪽에 맞으면
-          ball.x - ball.radius < b.x + brick.width-2 && //ball의 왼쪽이 brick의 오른쪽에 맞으면
-          ball.y + ball.radius > b.y+2 && //ball의 아래쪽이 brick의 위쪽에 맞으면
-          ball.y - ball.radius < b.y + brick.height-2 //ball의 위쪽이 brick의 아래쪽에 맞으면
+          ball.x + ball.radius > b.x+3 && //ball의 오른쪽이 brick의 왼쪽에 맞으면
+          ball.x - ball.radius < b.x + brick.width -3 && //ball의 왼쪽이 brick의 오른쪽에 맞으면
+          ball.y + ball.radius > b.y +3&& //ball의 아래쪽이 brick의 위쪽에 맞으면
+          ball.y - ball.radius < b.y + brick.height-3 //ball의 위쪽이 brick의 아래쪽에 맞으면
         ) {
-          ball.dy = -ball.dy; //방향변경 (수정필요할듯)
-          b.status = false; // brick 깨짐
-          SCORE += 1; //1점올리기
+          if(ball.x<b.x||b.x+brick.width<ball.x){ //왼/오른쪽 맞으면
+            ball.dx*=-1;
+            b.status = false;
+            SCORE+=1;
+          }
+          else{ //위아래 맞으면
+            ball.dy*=-1; 
+            b.status = false; // brick 깨짐
+            SCORE += 1; //1점올리기
+          }
         }
       }
     }
@@ -315,8 +294,8 @@ function createPig(){ //pig 생성자
   var yindex=Math.floor(Math.random()*(brick.column-1))+1;//yindex
   pig.xindex=xindex;
   pig.yindex=yindex;
-  pig.x=bricks[xindex][yindex].x-15; //돼지 몸통이 중심에 오도록..
-  pig.y=bricks[xindex][yindex].y-15;
+  pig.x=bricks[xindex][yindex].x-pig.width/2; //돼지 몸통이 중심에 오도록..
+  pig.y=bricks[xindex][yindex].y-pig.height/2;
 
 }
 var pigImg = new Image(pig.width, pig.height);
