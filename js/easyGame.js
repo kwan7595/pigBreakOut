@@ -1,12 +1,26 @@
 //on_click event
 document
   .querySelector(".difficulty__container__house1")
-  .addEventListener("click", () => {
-    document.querySelector("#difficulty").style.display = "none";
-    document.querySelector("#easyGame").style.display = "flex";
-    initEasyGame();
-    easyGameStart();
-  });
+  .addEventListener("click", loadEasyGame);
+function loadEasyGame(){
+  document.querySelector("#difficulty").style.display="none";
+  document.querySelector("#easyGame").style.display="flex";
+  initEasyGame();
+  easyGameStart();
+}
+function loadNormalGame(){
+  document.querySelector("#difficulty").style.display="none";
+  document.querySelector("#normalGame").style.display="flex";
+  cvs = document.getElementById("normalCanvas");
+  ctx = cvs.getContext("2d");
+
+  lifeSpan = document.querySelector(".normalGame__stats__life");
+  scoreSpan = document.querySelector(".normalGame__stats__score");
+
+  title = document.querySelector(".normalGame__title");
+  initNormalGame();
+  normalGameStart();
+}
 //break.js
 document.querySelector("#easyGame__muteBtn").addEventListener("click", () => {
   var muteSrc = document.querySelector("#easyGame__muteBtn").src.split("/");
@@ -394,9 +408,9 @@ function easyGameWin() {
       document.querySelector("#easyGame").style.display = "none";
       document.querySelector("#difficulty").style.display = "flex";
       var easymode = document.querySelector(".difficulty__container__house1");
-      easymode.onclick = null;
       easymode.setAttribute("src", "./src/house1Clear.png");
       easymode.style.opacity = 0.5;
+      easymode.removeEventListener("click",loadEasyGame);
       document.querySelector(
         ".difficulty__container__house2"
       ).style.opacity = 1;
@@ -405,19 +419,7 @@ function easyGameWin() {
       ).style.opacity = 0.5;
       document // add click event to next level
         .querySelector(".difficulty__container__house2")
-        .addEventListener("click", () => {
-          document.querySelector("#difficulty").style.display = "none";
-          document.querySelector("#normalGame").style.display = "flex";
-          cvs = document.getElementById("normalCanvas");
-          ctx = cvs.getContext("2d");
-
-          lifeSpan = document.querySelector(".normalGame__stats__life");
-          scoreSpan = document.querySelector(".normalGame__stats__score");
-
-          title = document.querySelector(".normalGame__title");
-          initNormalGame();
-          normalGameStart();
-        });
+        .addEventListener("click",loadNormalGame);
     }, 1000);
   }
 }

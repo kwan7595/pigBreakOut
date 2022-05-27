@@ -8,6 +8,19 @@ document.querySelector("#normalGame__muteBtn").addEventListener("click", () => {
     document.querySelector("#normalGame__muteBtn").src = "./src/mute.png";
   }
 });
+function loadHardGame(){
+  document.querySelector("#difficulty").style.display = "none";
+  document.querySelector("#hardGame").style.display = "flex";
+  cvs = document.getElementById("hardCanvas");
+  ctx = cvs.getContext("2d");
+
+  lifeSpan = document.querySelector(".hardGame__stats__life");
+  scoreSpan = document.querySelector(".hardGame__stats__score");
+
+  title = document.querySelector(".hardGame__title");
+  initHardGame();
+  hardGameStart();
+}
 var gamePause = false;
 document // pause game..
   .querySelector("#normalGame__pauseBtn")
@@ -72,7 +85,7 @@ function normalGameWin() {
       document.querySelector("#normalGame").style.display = "none";
       document.querySelector("#difficulty").style.display = "flex";
       var normalmode = document.querySelector(".difficulty__container__house2");
-      normalmode.onclick = null;
+      normalmode.removeEventListener("click",loadNormalGame);
       normalmode.setAttribute("src", "./src/house2Clear.png");
       normalmode.style.opacity = 0.5;
       document.querySelector(
@@ -80,19 +93,7 @@ function normalGameWin() {
       ).style.opacity = 1;
       document
         .querySelector(".difficulty__container__house3")
-        .addEventListener("click", () => {
-          document.querySelector("#difficulty").style.display = "none";
-          document.querySelector("#hardGame").style.display = "flex";
-          cvs = document.getElementById("hardCanvas");
-          ctx = cvs.getContext("2d");
-
-          lifeSpan = document.querySelector(".hardGame__stats__life");
-          scoreSpan = document.querySelector(".hardGame__stats__score");
-
-          title = document.querySelector(".hardGame__title");
-          initHardGame();
-          hardGameStart();
-        });
+        .addEventListener("click", loadHardGame);
       //변수들 초기화 필요함..
     }, 1000);
   }
