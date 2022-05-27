@@ -26,7 +26,7 @@ function normalGameStart() {
   time = setInterval(normalLoop, 10);
 }
 function initNormalGame() {
-  isPigHit=false;
+  isPigHit = false;
   brick.row = 7;
   brick.column = 5;
   time = 0;
@@ -51,7 +51,7 @@ function normalGameOver() {
 //게임 이겼는지 확인하는 함수
 function normalGameWin() {
   var isGameWin = true;
-  if(!isPigHit){
+  if (!isPigHit) {
     for (var r = 0; r < brick.row; r++) {
       for (var c = 0; c < brick.column; c++) {
         isGameWin = isGameWin && !bricks[r][c].status; //하나라도 안깨진 brick 존재하면 isGameWin == false
@@ -60,9 +60,10 @@ function normalGameWin() {
   }
   if (isGameWin) {
     //이겼다면
-    if(isPigHit){ // 돼지 찾아서 이긴거면
+    if (isPigHit) {
+      // 돼지 찾아서 이긴거면
       bricksToScore(); // 남은 brick 점수추가
-      SCORE+=70; //돼지 점수.
+      SCORE += 70; //돼지 점수.
     }
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
@@ -72,7 +73,8 @@ function normalGameWin() {
       document.querySelector("#difficulty").style.display = "flex";
       var normalmode = document.querySelector(".difficulty__container__house2");
       normalmode.onclick = null;
-      normalmode.setAttribute("src", "none");
+      normalmode.setAttribute("src", "./src/house2Clear.png");
+      normalmode.style.opacity = 0.5;
       document.querySelector(
         ".difficulty__container__house3"
       ).style.opacity = 1;
