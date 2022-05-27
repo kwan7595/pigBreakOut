@@ -235,18 +235,45 @@ function drawBricks() {
     }
   }
 }
-
+function isPointInCircle(tball,x,y){
+  var dx = tball.x - x;
+  var dy = tball.y - y;
+  var length = Math.sqrt(dx*dx+dy*dy);
+  if(length>tball.radius) return false;
+  return true;
+}
+function isCollision(tball,tbrick){
+  if((tbrick.x<=tball.x&&tball.x<=tbrick.x+brick.width)|| // 공의 중심이 
+    (tbrick.y<=tball.y&&tball.y<=tbrick.y-brick.height)){
+       //확장한 사각형
+      var left = tbrick.x - tball.radius;
+      var right = tbrick.x + brick.width + tball.radius;
+      var top = tbrick.y + brick.height -ball.radius;
+      var bottom = tbrick.y + ball.radius;
+      if((left<tball.x&&tball.x<right)&&(top<tball.y&&tball.y<bottom)){
+        return true;
+      }
+    } 
+  else{ //꼭짓점 확인
+    if(isPointInCircle(tball,tbrick.x,tbrick.y)) return true;
+    if(isPointInCircle(tball,tbrick.x,tbrick.y-brick.height)) return true;
+    if(isPointInCircle(tball,tbrick.x+brick.width,tbrick.y)) return true;
+    if(isPointInCircle(tball,tbrick.x+brick.width,tbrick.y-brick.height)) return true;
+  }
+  return false;
+}
 function ballBrickCollision() {
   for (var r = 0; r < brick.row; r++) {
     for (var c = 0; c < brick.column; c++) {
       var b = bricks[r][c];
       if (b.status) {
+        //if(isCollision(ball,b))
         //만약 brick이 깨지지 않았다면
         if (
-          ball.x > b.x && //ball의 오른쪽이 brick의 왼쪽에 맞으면
-          ball.x < b.x + brick.width && //ball의 왼쪽이 brick의 오른쪽에 맞으면
-          ball.y > b.y && //ball의 아래쪽이 brick의 위쪽에 맞으면
-          ball.y < b.y + brick.height //ball의 위쪽이 brick의 아래쪽에 맞으면
+          ball.x + ball.radius > b.x+2 && //ball의 오른쪽이 brick의 왼쪽에 맞으면
+          ball.x - ball.radius < b.x + brick.width-2 && //ball의 왼쪽이 brick의 오른쪽에 맞으면
+          ball.y + ball.radius > b.y+2 && //ball의 아래쪽이 brick의 위쪽에 맞으면
+          ball.y - ball.radius < b.y + brick.height-2 //ball의 위쪽이 brick의 아래쪽에 맞으면
         ) {
           ball.dy = -ball.dy; //방향변경 (수정필요할듯)
           b.status = false; // brick 깨짐
@@ -268,14 +295,15 @@ var pig = {
   width: 30,
   height: 30,
 };
-function createPig() {
-  //pig 생성자
-  var xindex = Math.floor(Math.random() * (brick.row - 1)) + 1; //xindex
-  var yindex = Math.floor(Math.random() * (brick.column - 1)) + 1; //yindex
-  pig.xindex = xindex;
-  pig.yindex = yindex;
-  pig.x = bricks[xindex][yindex].x;
-  pig.y = bricks[xindex][yindex].y;
+
+function createPig(){ //pig 생성자
+  var xindex=Math.floor(Math.random()*(brick.row-1))+1; //xindex
+  var yindex=Math.floor(Math.random()*(brick.column-1))+1;//yindex
+  pig.xindex=xindex;
+  pig.yindex=yindex;
+  pig.x=bricks[xindex][yindex].x-15; //돼지 몸통이 중심에 오도록..
+  pig.y=bricks[xindex][yindex].y-15;
+
 }
 var pigImg = new Image(pig.width, pig.height);
 pigImg.src = "src/pigs_1.png";
