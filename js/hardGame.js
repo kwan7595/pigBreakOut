@@ -26,7 +26,7 @@ function hardGameStart() {
   time = setInterval(hardLoop, 10);
 }
 function initHardGame() {
-  isPigHit=false;
+  isPigHit = false;
   brick.row = 9;
   brick.column = 5;
   time = 0;
@@ -51,7 +51,7 @@ function hardGameOver() {
 //게임 이겼는지 확인하는 함수
 function hardGameWin() {
   var isGameWin = true;
-  if(!isPigHit){
+  if (!isPigHit) {
     for (var r = 0; r < brick.row; r++) {
       for (var c = 0; c < brick.column; c++) {
         isGameWin = isGameWin && !bricks[r][c].status; //하나라도 안깨진 brick 존재하면 isGameWin == false
@@ -60,9 +60,10 @@ function hardGameWin() {
   }
   if (isGameWin) {
     //이겼다면
-    if(isPigHit){ // 돼지 찾아서 이긴거면
+    if (isPigHit) {
+      // 돼지 찾아서 이긴거면
       bricksToScore(); // 남은 brick 점수추가
-      SCORE+=100; //돼지 점수.
+      SCORE += 100; //돼지 점수.
     }
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
@@ -70,10 +71,8 @@ function hardGameWin() {
       // 1초 후에 난이도 화면으로 넘어감.
       document.querySelector("#hardGame").style.display = "none";
       document.querySelector("#win").style.display = "flex";
-      document
-        .querySelector("#win")
-        .append("SCORE:" + SCORE)
-        .append("LIFE:" + LIFE);
+      document.querySelector(".win__stats").innerHTML =
+        "SCORE : " + SCORE + "<br/>" + "LIFE : " + LIFE;
     }, 1000);
   }
 }
