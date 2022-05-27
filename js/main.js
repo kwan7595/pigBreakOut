@@ -72,6 +72,9 @@ document.querySelector(".story__contents__p3").addEventListener("click", () => {
 document.querySelector(".story__main").addEventListener("click", () => {
   document.querySelector("#main").style.display = "flex";
   document.querySelector("#story").style.display = "none";
+  document.querySelector(".story__contents__p1").style.display = "block";
+  document.querySelector(".story__contents__p2").style.display = "none";
+  document.querySelector(".story__contents__p3").style.display = "none";
 });
 // document.querySelector(".story__main").addEventListener("click", () => {
 //   document.querySelector("#story").style.display = "none";
