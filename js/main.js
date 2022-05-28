@@ -3,8 +3,9 @@ const playBtn = document.querySelector(".main__btnBox__playBtn");
 const storyBtn = document.querySelector(".main__btnBox__storyBtn");
 const setBtn = document.querySelector(".main__btnBox__setBtn");
 
+document.querySelector("body").style.color = "#28A847";
+document.querySelector("body").style.fontFamily = "mapo";
 //button click events
-document.querySelector("body").style.color = "rgb(0, 3, 190)";
 playBtn.addEventListener("click", () => {
   document.querySelector("#main").style.display = "none";
   document.querySelector("#difficulty").style.display = "flex";
