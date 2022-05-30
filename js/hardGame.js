@@ -14,7 +14,7 @@ document // pause game..
   .addEventListener("click", () => {
     if (gamePause) {
       gamePause = false;
-      time = setInterval(hardLoop, 10);
+      time = setInterval(hardLoop, 7);
     } else {
       gamePause = true;
       clearInterval(time);
@@ -23,7 +23,7 @@ document // pause game..
 function hardGameStart() {
   createBricks();
   createPig();
-  time = setInterval(hardLoop, 10);
+  time = setInterval(hardLoop, 7);
 }
 function initHardGame() {
   isPigHit = false;
