@@ -67,6 +67,7 @@ function hardGameWin() {
     }
     clearInterval(time); //루프멈추고
     title.innerText = "You Win!"; //게임 승리 출력
+    title.classList.add("text-rainbow");
     setTimeout(() => {
       // 1초 후에 난이도 화면으로 넘어감.
       document.querySelector("#hardGame").style.display = "none";
