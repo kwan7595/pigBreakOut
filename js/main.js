@@ -2,10 +2,13 @@
 const playBtn = document.querySelector(".main__btnBox__playBtn");
 const storyBtn = document.querySelector(".main__btnBox__storyBtn");
 const setBtn = document.querySelector(".main__btnBox__setBtn");
-
+const homeBtn = document.querySelectorAll(".home");
 document.querySelector("body").style.color = "#28A847";
 document.querySelector("body").style.fontFamily = "mapo";
 //button click events
+for(var i=0;i<homeBtn.length;i++){
+  homeBtn[i].addEventListener("click",()=>{location.reload();});
+}
 playBtn.addEventListener("click", () => {
   document.querySelector("#main").style.display = "none";
   document.querySelector("#difficulty").style.display = "flex";

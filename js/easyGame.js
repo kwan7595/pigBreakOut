@@ -21,15 +21,17 @@ function loadNormalGame() {
   initNormalGame();
   normalGameStart();
 }
+
 //break.js
 document.querySelector("#easyGame__muteBtn").addEventListener("click", () => {
-  var muteSrc = document.querySelector("#easyGame__muteBtn").src.split("/");
-  if (muteSrc[muteSrc.length - 1] == "mute.png") {
-    myaudio.pause();
-    document.querySelector("#easyGame__muteBtn").src = "./src/sound.png";
-  } else {
+  var muteSrc = document.querySelector("#easyGame__muteBtn");
+  if(myaudio.paused){
     myaudio.play();
-    document.querySelector("#easyGame__muteBtn").src = "./src/mute.png";
+    muteSrc.src="./src/mute.png";
+  }
+  else{
+    myaudio.pause();
+    muteSrc.src="./src/sound.png";
   }
 });
 var gamePause = false;
@@ -37,12 +39,21 @@ var time;
 document // pause game..
   .querySelector("#easyGame__pauseBtn")
   .addEventListener("click", () => {
+    var settings = document.querySelector("#settings");
+    var home = document.querySelector("#settings_home");
+    var button = document.querySelector("#easyGame__pauseBtn");
     if (gamePause) {
+      button.src="src/pause.png";
       gamePause = false;
+      settings.style.display="none";
+      home.style.display="none";
       time = setInterval(easyLoop, 10);
     } else {
+      button.src="src/play.png";
       gamePause = true;
       clearInterval(time);
+      settings.style.display="flex";
+      home.style.display="flex";
     }
   });
 //startGame
@@ -287,8 +298,8 @@ var pig = {
   yindex: 1,
   x: 1,
   y: 1,
-  width: 30,
-  height: 30,
+  width: 40,
+  height: 40,
 };
 
 function createPig() {
@@ -301,7 +312,7 @@ function createPig() {
   pig.y = bricks[xindex][yindex].y - pig.height / 2;
 }
 var pigImg = new Image(pig.width, pig.height);
-pigImg.src = "src/pigs_1.png";
+pigImg.src = "src/crying-pig_1.png";
 function drawPig() {
   ctx.drawImage(pigImg, pig.x, pig.y, pig.width, pig.height);
 }
@@ -359,11 +370,10 @@ function easyGameOver() {
     //졌다면
     clearInterval(time); //루프멈추고
     document.querySelector("#easyGame").style.display = "none";
-    document.querySelector("#lose").append("SCORE:" + SCORE);
+    document.querySelector(".lose__stats").innerHTML="SCORE:" + SCORE;
     document.querySelector("#lose").style.display = "flex";
   }
 }
-
 //게임 이겼는지 확인하는 함수
 function easyGameWin() {
   var isGameWin = true;
@@ -407,15 +417,15 @@ function easyGameWin() {
 }
 
 function initEasyGame() {
+  isPigHit=false;
   time = 0;
   LIFE = 3;
-  score = 0;
+  SCORE = 0;
   leftArrow = false;
   rightArrow = false;
   paddle.x = cvs.width / 2 - PADDLE_WIDTH / 2;
   paddle.y = cvs.height - PADDLE_MARGIN_BOTTOM;
   title.innerText = "Easy Mode!";
-
   resetBall();
 }
 //메인루프

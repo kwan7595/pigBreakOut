@@ -66,3 +66,7 @@
 .settings__label__bckImg__day {
   background-color: aquamarine;
 }
+#settings_home{
+  display: none;
+  width: 50px;
+}

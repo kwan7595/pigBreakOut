@@ -1,23 +1,30 @@
 document.querySelector("#hardGame__muteBtn").addEventListener("click", () => {
-  var muteSrc = document.querySelector("#hardGame__muteBtn").src.split("/");
-  if (muteSrc[muteSrc.length - 1] == "mute.png") {
-    myaudio.pause();
-    document.querySelector("#hardGame__muteBtn").src = "./src/sound.png";
-  } else {
+  var muteSrc = document.querySelector("#hardGame__muteBtn");
+  if(myaudio.paused){
     myaudio.play();
-    document.querySelector("#hardGame__muteBtn").src = "./src/mute.png";
+    muteSrc.src="./src/mute.png";
+  }
+  else{
+    myaudio.pause();
+    muteSrc.src="./src/sound.png";
   }
 });
 var gamePause = false;
 document // pause game..
   .querySelector("#hardGame__pauseBtn")
   .addEventListener("click", () => {
+    var settings = document.querySelector("#settings");
+    var home = document.querySelector("#settings_home");
     if (gamePause) {
+      settings.style.display="none";
+      home.style.display="none";
       gamePause = false;
       time = setInterval(hardLoop, 7);
     } else {
       gamePause = true;
       clearInterval(time);
+      settings.style.display="flex";
+      home.style.display="flex";
     }
   });
 function hardGameStart() {
@@ -26,6 +33,7 @@ function hardGameStart() {
   time = setInterval(hardLoop, 7);
 }
 function initHardGame() {
+  pigImg.src = "src/crying-pig_3.png";
   isPigHit = false;
   brick.row = 9;
   brick.column = 5;
@@ -43,7 +51,7 @@ function hardGameOver() {
     //졌다면
     clearInterval(time); //루프멈추고
     document.querySelector("#hardGame").style.display = "none";
-    document.querySelector("#lose").append("score:" + SCORE);
+    document.querySelector(".lose__stats").innerHTML="SCORE:" + SCORE;
     document.querySelector("#lose").style.display = "flex";
   }
 }
@@ -77,6 +85,9 @@ function hardGameWin() {
     }, 1000);
   }
 }
+document.querySelector("#win_home").addEventListener("click",()=>{
+  location.reload();
+})
 function hardLoop() {
   ctx.clearRect(0, 0, cvs.width, cvs.height); //캔버스 초기화
   update();

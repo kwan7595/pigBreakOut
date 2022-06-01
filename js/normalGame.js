@@ -1,11 +1,12 @@
 document.querySelector("#normalGame__muteBtn").addEventListener("click", () => {
-  var muteSrc = document.querySelector("#normalGame__muteBtn").src.split("/");
-  if (muteSrc[muteSrc.length - 1] == "mute.png") {
-    myaudio.pause();
-    document.querySelector("#normalGame__muteBtn").src = "./src/sound.png";
-  } else {
+  var muteSrc = document.querySelector("#normalGame__muteBtn");
+  if(myaudio.paused){
     myaudio.play();
-    document.querySelector("#normalGame__muteBtn").src = "./src/mute.png";
+    muteSrc.src="./src/mute.png";
+  }
+  else{
+    myaudio.pause();
+    muteSrc.src="./src/sound.png";
   }
 });
 function loadHardGame() {
@@ -25,12 +26,18 @@ var gamePause = false;
 document // pause game..
   .querySelector("#normalGame__pauseBtn")
   .addEventListener("click", () => {
+    var settings = document.querySelector("#settings");
+    var home = document.querySelector("#settings_home");
     if (gamePause) {
+      settings.style.display="none";
+      home.style.display="none";
       gamePause = false;
       time = setInterval(normalLoop, 8.5);
     } else {
       gamePause = true;
       clearInterval(time);
+      settings.style.display="flex";
+      home.style.display="flex";
     }
   });
 function normalGameStart() {
@@ -39,6 +46,7 @@ function normalGameStart() {
   time = setInterval(normalLoop, 8.5);
 }
 function initNormalGame() {
+  pigImg.src = "src/crying-pig_2.png";
   isPigHit = false;
   brick.row = 7;
   brick.column = 5;
@@ -56,7 +64,7 @@ function normalGameOver() {
     //졌다면
     clearInterval(time); //루프멈추고
     document.querySelector("#normalGame").style.display = "none";
-    document.querySelector("#lose").append("SCORE:" + SCORE);
+    document.querySelector(".lose__stats").innerHTML="SCORE:" + SCORE;
     document.querySelector("#lose").style.display = "flex";
   }
 }

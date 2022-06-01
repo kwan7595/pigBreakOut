@@ -53,6 +53,8 @@ document
 var myaudio = new Audio();
 myaudio.src = "./src/audio/bgm1.mp3";
 myaudio.loop = true;
+var muteBtns = document.querySelectorAll(".muteBtn");
+
 document
   .querySelector(".settings__label__bgm__bgm1")
   .addEventListener("click", () => {
@@ -70,6 +72,9 @@ document
     document.querySelector(
       ".settings__label__bgm__bgm1"
     ).style.backgroundColor = "aquamarine";
+    for(var i=0;i<muteBtns.length;i++){
+      muteBtns[i].src="./src/mute.png";
+    }
   });
 document
   .querySelector(".settings__label__bgm__bgm2")
@@ -88,6 +93,9 @@ document
     document.querySelector(
       ".settings__label__bgm__bgm2"
     ).style.backgroundColor = "aquamarine";
+    for(var i=0;i<muteBtns.length;i++){
+      muteBtns[i].src="./src/mute.png";
+    }
   });
 
 document
@@ -107,6 +115,9 @@ document
     document.querySelector(
       ".settings__label__bgm__bgm3"
     ).style.backgroundColor = "aquamarine";
+    for(var i=0;i<muteBtns.length;i++){
+      muteBtns[i].src="./src/mute.png";
+    }
   });
 document
   .querySelector(".settings__label__bgm__mute")
@@ -124,4 +135,7 @@ document
     document.querySelector(
       ".settings__label__bgm__mute"
     ).style.backgroundColor = "aquamarine";
+    for(var i=0;i<muteBtns.length;i++){
+      muteBtns[i].src="./src/sound.png";
+    }
   });
