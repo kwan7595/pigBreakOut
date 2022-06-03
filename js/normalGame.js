@@ -28,12 +28,15 @@ document // pause game..
   .addEventListener("click", () => {
     var settings = document.querySelector("#settings");
     var home = document.querySelector("#settings_home");
+    var button = document.querySelector("#normalGame__pauseBtn");
     if (gamePause) {
+      button.src="src/pause.png";
+      gamePause = false;
       settings.style.display="none";
       home.style.display="none";
-      gamePause = false;
       time = setInterval(normalLoop, 8.5);
     } else {
+      button.src="src/play.png";
       gamePause = true;
       clearInterval(time);
       settings.style.display="flex";
